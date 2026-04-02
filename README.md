@@ -1,23 +1,48 @@
 # ITSMixer: Iterative Time-Mixing MLPs for Efficient Long-Term Forecasting
 
-Official partial code release for the paper "[TSMixer: Iterative Time-Mixing MLPs for Efficient Long-Term Forecasting]".
+Official implementation of the paper:
 
-This repository provides:
-- The core model architecture (`ITSMixer.py`).
-- Experiment-specific configurations and logs (in `Experiments/`).
+**ITSMixer: iterative time-mixing MLPs for efficient long-term forecasting**  
+**Authors:** Arian Lotfi, Siavash Damari  
+**Journal:** *Evolving Systems*  
+**DOI:** 10.1007/s12530-026-09830-0
 
-## Model Overview
-ITSMixer is a lightweight MLP-based model for multivariate long-term time series forecasting. It features an iterative time-mixing mechanism with residual accumulation across multiple MLP instances, enabling efficient temporal mixing without attention or recurrence overhead.
+## Overview
 
-Key components in `ITSMixer.py`:
-- RevIN (reversible instance normalization)
-- Mlp_time (time-mixing MLP with GELU and dropout)
-- Mixer_Layer (iterative residual chaining with multiple MLPs and loops)
-- Backbone (mixer + temporal projection)
-- Model (full wrapper with RevIN norm/denorm)
+ITSMixer is a lightweight MLP-based model for multivariate long-term time series forecasting. Building on TSMixer, it removes feature-mixing layers and relies on iterative time-mixing MLPs for efficient temporal modeling.
 
-## Code availability
-This repository contains the core implementation of ITSMixer for validation purposes during the review process.
+The model is designed to provide strong forecasting performance with lower computational complexity, making it a practical choice for real-world applications where efficiency and simplicity are important.
 
-The code remains unpublished and is not licensed for reuse, redistribution, modification, or any other purpose at this time (copyright © Arian Lotfi 2026).  
-A full open-source release with an appropriate license is planned upon acceptance and publication of the paper.
+## Repository Contents
+
+This repository currently includes:
+
+- `ITSMixer.py` — core implementation of the ITSMixer model
+- `Experiments/` — experiment configurations and logs
+
+## Model Components
+
+Key components in `ITSMixer.py` include:
+
+- **RevIN** — reversible instance normalization
+- **Mlp_time** — time-mixing MLP with GELU activation and dropout
+- **Mixer_Layer** — iterative residual chaining with multiple MLPs and loops
+- **Backbone** — mixer with temporal projection
+- **Model** — full wrapper with normalization and denormalization
+
+## Status
+
+This repository is now public. Additional documentation, licensing information, and extended code details will be added in future updates.
+
+## Citation
+
+If you use this work, please cite:
+
+```bibtex
+@article{lotfi2026itsmixer,
+  title   = {ITSMixer: iterative time-mixing MLPs for efficient long-term forecasting},
+  author  = {Lotfi, Arian and Damari, Siavash},
+  journal = {Evolving Systems},
+  year    = {2026},
+  doi     = {10.1007/s12530-026-09830-0}
+}
