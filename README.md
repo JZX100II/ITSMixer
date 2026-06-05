@@ -86,21 +86,27 @@ from ITSMixer import Model
 
 # Configuration
 class Config:
-    seq_len = 96  # Input sequence length
+    seq_len = 96   # Input sequence length
     pred_len = 24  # Prediction horizon
-    enc_in = 7  # Number of input features
+    enc_in = 7     # Number of input features
 
 config = Config()
 model = Model(config)
-# model = model.cuda()
 
-# Forward pass
-batch_x = torch.randn(32, 96, 7)
+# Set device (uses GPU if available, otherwise falls back to CPU)
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+model = model.to(device)
+
+# Prepare dummy inputs
+batch_x = torch.randn(32, config.seq_len, config.enc_in).to(device)
 batch_x_mark = None
-dec_inp = torch.randn(32, 24, 7)
+dec_inp = torch.randn(32, config.pred_len, config.enc_in).to(device)
 batch_y_mark = None
 
-output = model(batch_x, batch_x_mark, dec_inp, batch_y_mark)  # (32, 24, 7)
+# Forward pass
+output = model(batch_x, batch_x_mark, dec_inp, batch_y_mark) 
+
+print("Output shape:", output.shape)
 ```
 
 ---
