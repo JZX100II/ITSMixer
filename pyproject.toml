@@ -8,6 +8,7 @@ version = "0.1.0"
 description = "Official code for ITSMixer (Iterative Time-Mixing MLPs)"
 readme = "README.md"
 license = {text = "MIT"}
+license-files = {paths = ["LICENSE"]}
 authors = [
     {name = "Arian Lotfi and Siavash Damari", email = "arianlotfi83@gmail.com"},
 ]
